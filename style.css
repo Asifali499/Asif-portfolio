@@ -1,0 +1,761 @@
+* {
+    /* color: rgb(63, 63, 62); */
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family: gilroy;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    /* color: #F5F5F7; */
+    /* color: rgb(204, 236, 208); */
+}
+
+#main {
+    position: relative;
+    overflow: hidden;
+}
+.Asif{
+    color: rgb(11, 4, 158);
+font-size: 27px
+
+    /* -webkit-text-stroke: 1.2px #58A6FF;
+    color: transparent; */
+}
+
+#page {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    /* background: linear-gradient(to right, rgb(90, 81, 87), rgb(105, 105, 151), rgb(69, 86, 69)); */
+    /* background: linear-gradient(
+        110deg,
+        #b7b6bf,
+        #76adc3,
+        #9385cb */
+   
+}
+
+
+/* testing Ai */
+
+#page01 {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+     background: linear-gradient(120deg, #090d1e, #101B35, #102D3A);
+         display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Main Chat Container */
+
+#ai-chat {
+    width: 450px;
+    height: 650px;
+    max-height: 85vh;
+    background: rgba(12, 20, 40, 0.95);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.12);
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+/* AI Header */
+
+#ai-header {
+    padding: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+#ai-header h2 {
+    color: #00ffff;
+    font-size: 24px;
+    letter-spacing: 2px;
+}
+
+#ai-header p {
+    color: #9baec9;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.ai-status {
+    color: #00ff99;
+    font-size: 13px;
+}
+
+/* Chat Messages */
+
+#chat-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.ai-message {
+    background: rgba(0, 255, 255, 0.08);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    padding: 15px;
+    border-radius: 12px;
+    max-width: 85%;
+    color: #e0f7ff;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.ai-message p + p {
+    margin-top: 8px;
+}
+
+/* Suggested Questions */
+
+#suggested-questions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px 18px;
+}
+
+#suggested-questions button {
+    background: transparent;
+    border: 1px solid #00bcd4;
+    color: #00ffff;
+    padding: 9px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: 0.3s;
+}
+
+#suggested-questions button:hover {
+    background: #00bcd4;
+    color: #080B1A;
+}
+
+/* Chat Input */
+
+#chat-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    border-top: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+
+#user-input {
+    flex: 1;
+    min-width: 0;
+    background: #101b35;
+    border: 1px solid #23445a;
+    outline: none;
+    padding: 13px;
+    border-radius: 8px;
+    color: white;
+    font-size: 14px;
+}
+
+#user-input:focus {
+    border-color: #00ffff;
+}
+
+#mic-button,
+#send-button {
+    border: none;
+    padding: 12px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #00bcd4;
+    color: #080B1A;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#mic-button:hover,
+#send-button:hover {
+    background: #00ffff;
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.5);
+}
+
+
+
+
+.user-message {
+    background: #72969c;
+    color: white;
+    padding: 10px 10px;
+    border-radius: 12px;
+    max-width: 85%;
+    margin: 12px 0 12px auto;
+    font-size: 14px;
+    line-height: 1;
+    overflow-wrap: anywhere;
+}
+
+
+/* Chat scrolling area */
+
+#chat-messages {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    scrollbar-width: thin;
+    scrollbar-color: #00bcd4 #101b35;
+
+    overscroll-behavior: contain;
+}
+
+/* Chrome, Edge and Safari */
+
+#chat-messages::-webkit-scrollbar {
+    width: 7px;
+}
+
+#chat-messages::-webkit-scrollbar-track {
+    background: #101b35;
+    border-radius: 10px;
+}
+
+#chat-messages::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        180deg,
+        #00ffff,
+        #087f94
+    );
+    border-radius: 10px;
+}
+
+#chat-messages::-webkit-scrollbar-thumb:hover {
+    background: #00ffff;
+}
+
+
+
+
+
+
+
+#page1 {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+ background: linear-gradient(to right, rgb(74, 71, 73), rgb(214, 226, 203), rgb(219, 226, 219));
+}
+
+#page2 {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(120deg, #080B1A, #8194c0, #102D3A);
+    color: white;
+}
+
+/* check this later */
+
+
+/* #page3 {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(to right, rgb(74, 71, 73), rgb(214, 226, 203), rgb(219, 226, 219));
+} */
+
+canvas {
+    position: relative;
+    z-index: 9;
+    max-width: 100vw;
+    max-height: 100vh;
+    pointer-events: none;
+}
+
+
+
+
+/* testing */
+.pin-spacer:has(> canvas) {
+    pointer-events: none;
+}
+
+
+/* check if any error got */
+
+
+
+
+#page01 {
+    position: relative;
+    z-index: 10;
+}
+
+#page2 {
+    position: relative;
+    z-index: 10;
+}
+
+
+
+
+
+
+
+
+#loop {
+    display: flex;
+    position: absolute;
+    top: 30%;
+    height: 25%;
+    width: 100%;
+    font-size: 100px;
+    white-space: nowrap;
+    font-family: gilroy;
+}
+
+#loop>h1 {
+    font-weight: 350;
+    animation-name: anim;
+    animation-duration: 15s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+#loop>h1>span {
+        -webkit-text-stroke: 1.2px #58A6FF;
+    color: transparent;
+    /* -webkit-text-stroke: 1.2px #000;
+    color: transparent; */
+    font-weight: 100;
+}
+
+@keyframes anim {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+#nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 7%;
+    width: 100%;
+    position: fixed;
+    z-index: 99;
+    padding: 0px 30px;
+}
+
+
+
+#nav>h3 {
+    font-family: gilroy;
+    font-weight: 350;
+    font-size: 22px;
+}
+
+#nav>button {
+    padding: 10px 20px;
+    border-radius: 50px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+}
+
+
+
+
+#page>h3 {
+    position: absolute;
+    top: 55%;
+    font-family: gilroy;
+    font-weight:  350;
+    /* color: #332b2b; */
+    left: 5%;
+}
+
+#page>h4 {
+    position: absolute;
+    top: 62%;
+    left: 25%;
+    font-family: gilroy;
+    font-weight:  350;
+}
+
+#page1>#right-text {
+    position: absolute;
+    top: 30%;
+    left: 10%;
+}
+
+#page1>#right-text>h3 {
+    font-weight:  350;
+    /* color: #7c7c7c; */
+}
+
+#page1>#right-text>h1 {
+    line-height: 1.5;
+    font-size: 50px;
+}
+
+#page1>#left-text {
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    text-align: end;
+}
+
+
+#page1>#left-text>h1 {
+    font-size: 50px;
+    line-height: 1.5;
+}
+
+#page1>#left-text>h3 {
+    color: #1d1c1c;
+    font-weight:  350;
+}
+
+#page2>#text1 {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+}
+
+#page2>#text1>h3 {
+    color: white;
+    font-weight: 250;
+}
+
+#page2>#text1>h1 {
+    font-size: 60px;
+    line-height: 1.5;
+}
+
+#page2>#text2 {
+    position: absolute;
+    top: 35%;
+    right: 10%;
+    text-align: end;
+}
+
+#page2>#text2>p {
+    color:white;
+    font-weight: 350;
+}
+
+
+
+
+
+
+
+
+
+
+/* changed by me */
+
+
+
+
+.anchor {
+    text-decoration: none;
+    color:white;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: white;
+}
+
+
+.nav1{
+    margin-right: -34px;
+       
+   
+    padding: 0px 30px;
+}
+.buttonN{
+      padding: 10px 20px;
+    border-radius: 50px;
+    background-color: #000;
+    color: #fff;
+    border: 2px solid blue;
+}
+
+
+
+
+
+
+.wave-text {
+    display: inline-block;
+    animation: wave 2s ease-in-out infinite;
+}
+
+@keyframes wave {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+
+/* scramble */
+
+.scramble {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.scramble:hover {
+    color: #00ffff;
+}
+
+
+
+
+
+/* #page3 canvas {
+    pointer-events: none !important;
+}
+
+#page3{
+    pointer-events: auto;
+    position: relative;
+    z-index: 10;
+} */
+
+
+/* =================================
+   CONTACT PAGE
+================================= */
+
+#page3 {
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(120deg, #080B1A, #101B35, #102D3A);
+
+  
+
+    padding: 0 8%;
+    box-sizing: border-box;
+    color: white;
+}
+
+
+/* =================================
+   LEFT CONTENT
+================================= */
+
+#text3 {
+     position: absolute;
+    top: 0%;
+    left: 0%;
+}
+#text3 h1{
+    margin-top: 65px;
+}
+
+#text3 h3 {
+    color: #00ffff;
+    font-size: 17px;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+}
+
+
+
+#text3 h1.scramble {
+    color: #00ffff;
+}
+
+#text3 > p {
+    max-width: 480px;
+    color: #c2d1e5;
+    font-size: 17px;
+    line-height: 1.7;
+    margin-top: 30px;
+}
+
+
+/* =================================
+   SOCIAL LINKS
+================================= */
+
+.contact-links {
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 20px;
+
+}
+
+.contact-links a {
+    text-decoration: none;
+    color: #00ffff;
+
+    border: 1px solid #00bcd4;
+    padding: 12px 22px;
+    border-radius: 30px;
+
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.contact-links a:hover {
+    background: #00bcd4;
+    color: #080B1A;
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+}
+
+
+/* =================================
+   FOOTER
+================================= */
+
+ .contact-footer {
+    color: #718ba8;
+    font-size: 20px;
+    letter-spacing: 2px;
+    margin-top: 30px;
+} 
+
+
+/* =================================
+   RIGHT CONTENT
+================================= */
+
+#contact-right {
+        position: absolute;
+    top: 10%;
+    right: 3%;
+}
+
+#contact-right > h2 {
+    color: #00ffff;
+    font-size: 25px;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+}
+
+
+/* =================================
+   QR CODE CARDS
+================================= */
+
+.contact-qr { 
+     display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px; 
+ }
+
+.qr-card {
+    width: 210px;
+    padding: 15px;
+
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(0, 255, 255, 0.25);
+    border-radius: 18px;
+
+    backdrop-filter: blur(12px);
+
+    transition: all 0.4s ease;
+}
+
+.qr-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    border-radius: 10px;
+
+    transition: transform 0.4s ease;
+}
+
+.qr-card h2 {
+    color: #00ffff;
+    font-size: 19px;
+    letter-spacing: 2px;
+    margin-top: 15px;
+}
+
+.qr-card p {
+    color: #b8c8dc;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+
+/* =================================
+   HOVER ANIMATIONS
+================================= */
+
+.qr-card:hover {
+    transform: translateY(-12px) scale(1.04);
+
+    border-color: #00ffff;
+
+    box-shadow:
+        0 0 15px rgba(0, 255, 255, 0.3),
+        0 0 40px rgba(0, 255, 255, 0.15);
+}
+
+.qr-card:hover img {
+    transform: scale(1.05);
+}
+
+
+/* =================================
+   MOBILE RESPONSIVENESS
+================================= */
+
+@media (max-width: 900px) {
+
+    #page3 {
+        height: auto;
+        min-height: 100vh;
+        flex-direction: column;
+        gap: 50px;
+        padding: 130px 25px 50px;
+    }
+
+    #text3,
+    #contact-right {
+        width: 100%;
+    }
+
+    #text3 h1 {
+        font-size: 55px;
+    }
+
+    .contact-qr {
+        flex-wrap: wrap;
+    }
+}
+
+
+
+
+
+
