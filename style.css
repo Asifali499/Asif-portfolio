@@ -260,19 +260,13 @@ font-size: 27px
     position: relative;
     height: 100vh;
     width: 100vw;
-    background: linear-gradient(120deg, #080B1A, #8194c0, #102D3A);
-    color: white;
+    /* background: linear-gradient(120deg, #080B1A, #8194c0, #102D3A); */
+
+     background: linear-gradient(120deg, #030124, #0d1630, #102D3A);
+   
 }
 
-/* check this later */
 
-
-/* #page3 {
-    position: relative;
-    height: 100vh;
-    width: 100vw;
-    background: linear-gradient(to right, rgb(74, 71, 73), rgb(214, 226, 203), rgb(219, 226, 219));
-} */
 
 canvas {
     position: relative;
@@ -426,10 +420,10 @@ canvas {
     line-height: 1.5;
 }
 
-#page1>#left-text>h3 {
+/* #page1>#left-text>h3 {
     color: #1d1c1c;
     font-weight:  350;
-}
+} */
 
 #page2>#text1 {
     position: absolute;
@@ -498,6 +492,100 @@ canvas {
     color: #fff;
     border: 2px solid blue;
 }
+
+
+
+/* lamp animation */
+
+/* ============ PULL-CORD LAMP ============ */
+#lamp {
+    --pull: 0px;
+    position: fixed;
+    top: 0;
+    right: 60px;
+    width: 14px;
+    height: 0;
+    z-index: 100;
+    pointer-events: none;
+    user-select: none;
+    transform-origin: 50% 0;
+}
+
+.lamp-glow {
+    position: absolute;
+    left: 50%; top: 88px;
+    width: 340px; height: 340px;
+    transform: translate(-50%, -30%);
+    background: radial-gradient(circle, rgba(255, 220, 120, .55), rgba(255, 220, 120, 0) 65%);
+    opacity: 1;
+    transition: opacity .5s;
+}
+
+.bulb { fill: #fff3b0; filter: drop-shadow(0 0 10px #ffd966); transition: fill .4s, filter .4s; }
+
+.cord {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cord-line {
+    width: 2px;
+    height: calc(70px + var(--pull));
+    background: #5b6b8c;        /* darker so it shows on the white page */
+    transition: height .45s cubic-bezier(.3, 1.9, .5, 1);
+}
+
+.cord-handle {
+    position: relative;
+    width: 14px; height: 14px;
+    padding: 0; border: 0;
+    border-radius: 50%;
+    background: #00ffff;
+    box-shadow: 0 0 10px rgba(0, 255, 255, .7);
+    cursor: grab;
+    pointer-events: auto;          /* only the bead is clickable */
+    touch-action: none;
+}
+.cord-handle::after { content: ""; position: absolute; inset: -12px; }  /* easier to grab */
+
+#lamp.dragging .cord-line { transition: none; }
+#lamp.dragging .cord-handle { cursor: grabbing; }
+
+#lamp.swing { animation: lampSwing 1.2s ease-out; }
+@keyframes lampSwing {
+    0%   { transform: rotate(0); }
+    20%  { transform: rotate(7deg); }
+    45%  { transform: rotate(-5deg); }
+    70%  { transform: rotate(2.5deg); }
+    100% { transform: rotate(0); }
+}
+
+/* ============ DARK THEME (when cord is pulled) ============ */
+body { background: #ffffff; transition: background .6s; }
+body.dark { background: #05070f; }
+
+body.dark .lamp-glow { opacity: 0; }
+body.dark .bulb { fill: #3a4058; filter: none; }
+
+body.dark .Asif { color: #00ffff; }
+
+body.dark #page h3,
+body.dark #page h4,
+body.dark #loop > h1 { color: #e6f1ff; }
+
+body.dark #page1 { background: linear-gradient(120deg, #05070f, #0d1630, #102D3A); }
+body.dark #page1 h1,
+body.dark #page1 h3 { color: #e6f1ff; }
+body.dark #page1 .scramble:hover { color: #00ffff; }
+
+
+
+
 
 
 
@@ -755,6 +843,96 @@ canvas {
 }
 
 
+
+
+
+/* skill rotation */
+
+/* ============ ROTATING SKILL SPHERE ============ */
+#skill-sphere {
+    --sphere-size: min(480px, 62vh);
+    position: absolute;
+    right: 35%;
+    top: 45%;
+    transform: translateY(-50%);
+    width: var(--sphere-size);
+    height: var(--sphere-size);
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+    z-index: 2;
+}
+
+#skill-sphere.dragging { cursor: grabbing; }
+
+#skill-sphere::before {            /* soft glow behind the globe */
+    content: "";
+    position: absolute;
+    inset: 8%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 255, 255, .14), rgba(0, 255, 255, 0) 70%);
+    /* border: 1px solid rgba(0, 255, 255, .12); */
+    pointer-events: none;
+}
+
+#skill-sphere .skill {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    white-space: nowrap;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: .5px;
+    color: #e3fcff;
+    text-shadow: 0 0 8px rgba(0, 255, 255, .7), 0 1px 4px rgba(0, 0, 0, .6);
+    will-change: transform, opacity;
+    transition: color .25s, text-shadow .25s;
+}
+
+#skill-sphere .skill:hover {
+    color: #00ffff;
+    text-shadow: 0 0 14px #00ffff, 0 1px 4px rgba(0, 0, 0, .7);
+}
+
+@media (max-width: 900px) {
+    #skill-sphere {
+        --sphere-size: min(340px, 80vw);
+        right: 50%;
+        top: 66%;
+        transform: translate(50%, -50%);
+    }
+    #skill-sphere .skill { font-size: 14px; }
+}
+
+
+
+
+
+/* ============ SLICE TEXT (reusable effect) ============ */
+
+/* Added automatically by the script once the animation is running.
+   The real text stays in the page (selectable, readable by Google and
+   screen readers); it is only made see-through while the dots are drawn. */
+.slice-text.slice-ready,
+.slice-text.slice-ready * {
+    color: transparent !important;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none !important;
+}
+.slice-text.slice-ready { cursor: crosshair; }
+
+/* The canvas the script adds. These lines also cancel your site's global
+   "canvas { ... }" rule for it, so the photo animation is not affected. */
+.slice-text > .slice-canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    display: block;
+    max-width: none;
+    max-height: none;
+    pointer-events: none;
+}
 
 
 
